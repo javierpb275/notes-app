@@ -33,5 +33,20 @@ yargs.command({
     }
 })
 
+//REMOVE COMMAND:
+//create remove command
+yargs.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,//you have to provide --title="" in order for the command to work
+            type: 'string'
+        }
+    },
+    handler: (argv) => notes.removeNote(argv.title)
+})
+
 //yargs.parse() passes the arguments with all of the configuration details you've provided with your yargs commands calls
 yargs.parse()
