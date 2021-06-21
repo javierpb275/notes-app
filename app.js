@@ -28,13 +28,10 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: (argv) => {
-        notes.addNote(argv.title, argv.body);
-    }
+    handler: argv => notes.addNote(argv.title, argv.body)
 })
 
 //REMOVE COMMAND:
-//create remove command
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
@@ -45,7 +42,14 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: (argv) => notes.removeNote(argv.title)
+    handler: argv => notes.removeNote(argv.title)
+})
+
+//LIST COMMAND
+yargs.command({
+    command: 'list',
+    describe: 'List your notes',
+    handler: () => notes.listNotes()
 })
 
 //yargs.parse() passes the arguments with all of the configuration details you've provided with your yargs commands calls
