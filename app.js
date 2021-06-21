@@ -45,11 +45,25 @@ yargs.command({
     handler: argv => notes.removeNote(argv.title)
 })
 
-//LIST COMMAND
+//LIST COMMAND:
 yargs.command({
     command: 'list',
     describe: 'List your notes',
     handler: () => notes.listNotes()
+})
+
+//READ COMMAND:
+yargs.command({
+    command: 'read',
+    describe: 'Read a note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,//you have to provide --title="" in order for the command to work
+            type: 'string'
+        }
+    },
+    handler: argv => notes.readNote(argv.title)
 })
 
 //yargs.parse() passes the arguments with all of the configuration details you've provided with your yargs commands calls
